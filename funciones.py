@@ -2,6 +2,7 @@
 import pandas as pd 
 import sqlite3 as sql 
 import sys 
+import numpy as np
 from sklearn.impute import SimpleImputer
 
 #funcion que muestra categorias
