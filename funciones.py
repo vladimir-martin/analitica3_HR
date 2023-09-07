@@ -30,3 +30,17 @@ def ejecutar_sql (nombre_archivo, cur):
   sql_as_string=sql_file.read()
   sql_file.close
   cur.executescript(sql_as_string)
+
+#funcion para comparar los desempeños de modelos
+def sel_variables(modelos,X,y,threshold):
+    
+    var_names_ac=np.array([])
+    for modelo in modelos:
+        #modelo=modelos[i]
+        modelo.fit(X,y)
+        sel = SelectFromModel(modelo, prefit=True,threshold=threshold)
+        var_names= sel.get_feature_names_out(modelo.feature_names_in_)
+        var_names_ac=np.append(var_names_ac, var_names)
+        var_names_ac=np.unique(var_names_ac)
+    
+    return var_names_ac
