@@ -44,16 +44,25 @@ CREATE TABLE retirement_2 AS
 SELECT EmployeeID,Attrition,retirementDate,retirementType,resignationReason FROM retirement;
 SELECT * FROM retirement_2;
 
+--tabla time
+SELECT * FROM time;
+--Se crea tabla manager_2 con variables reorganizadas
+DROP TABLE IF EXISTS time_2;
+CREATE TABLE time_2 AS
+SELECT EmployeeID,Mean_Work_Hrs FROM time;
+SELECT * FROM time_2;
+
 
 --union de bases de datos 
 
 DROP TABLE IF EXISTS base_full;
 CREATE TABLE base_full AS 
-SELECT t1.*, t2.Attrition, t3.JobInvolvement,t3.PerformanceRating, t4.EnvironmentSatisfaction,t4.JobSatisfaction,t4.WorkLifeBalance 
+SELECT t1.*, t2.Attrition, t3.JobInvolvement,t3.PerformanceRating, t4.EnvironmentSatisfaction,t4.JobSatisfaction,t4.WorkLifeBalance,t5.Mean_Work_Hrs 
 FROM general_2 t1
 INNER JOIN Attrition t2 ON t1.EmployeeID=t2.EmployeeID
 INNER JOIN manager_2 t3 ON t1.EmployeeID=t3.EmployeeID
-INNER JOIN employee_survey_2 t4 ON T1.EmployeeID=T4.EmployeeID;
+INNER JOIN employee_survey_2 t4 ON T1.EmployeeID=T4.EmployeeID
+INNER JOIN time_2 t5 ON T1.EmployeeID=T5.EmployeeID;
 
 SELECT * FROM base_full;
 
