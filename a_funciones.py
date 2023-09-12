@@ -63,4 +63,3 @@ def medir_modelos(modelos,scoring,X,y,cv):
     metric_modelos.columns=["ran_forest","decision_tree","reg_lineal","gradient_boosting"]
     return metric_modelos
 
-
